@@ -1,5 +1,6 @@
 package com.assisjrs.crudjava.controller;
 
+import com.assisjrs.crudjava.model.entity.Cliente;
 import com.assisjrs.crudjava.model.service.ClienteService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,15 @@ public class ClienteController {
     public ResponseEntity<?> delete(@PathVariable final Long id){
         service.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<?> put(@PathVariable final Long id, @RequestBody final ClienteRequest request){
+        final Cliente cliente = mapper.map(request, Cliente.class);
+        cliente.setId(id);
+
+        service.updateBy(cliente);
+        return ResponseEntity.noContent()
+                             .build();
     }
 }
