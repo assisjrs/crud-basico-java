@@ -16,4 +16,10 @@ public class ClienteService {
         return repository.findById(id)
                          .orElseThrow(ClienteNaoEncontradoException::new);
     }
+
+    public void deleteById(Long id) {
+        final Cliente cliente = byId(id);
+
+        repository.delete(cliente);
+    }
 }

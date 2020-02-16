@@ -4,10 +4,7 @@ import com.assisjrs.crudjava.model.service.ClienteService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/clientes")
@@ -22,5 +19,11 @@ public class ClienteController {
     @GetMapping("{id}")
     public ResponseEntity<ClienteResponse> get(@PathVariable final Long id){
         return ResponseEntity.ok(mapper.map(service.byId(id), ClienteResponse.class));
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> delete(@PathVariable final Long id){
+        service.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
