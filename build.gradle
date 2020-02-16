@@ -33,6 +33,8 @@ dependencies {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 	testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-stub-runner'
+
+	testImplementation 'com.wix:wix-embedded-mysql:1.0.3'
 }
 
 dependencyManagement {
