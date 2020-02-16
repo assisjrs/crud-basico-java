@@ -30,11 +30,20 @@ public class ClienteController {
 
     @PutMapping("{id}")
     public ResponseEntity<?> put(@PathVariable final Long id, @RequestBody final ClienteRequest request){
+        return atualizar(id, request);
+    }
+
+    @PatchMapping("{id}")
+    public ResponseEntity<?> patch(@PathVariable final Long id, @RequestBody final ClienteRequest request){
+        return atualizar(id, request);
+    }
+
+    private ResponseEntity<?> atualizar(@PathVariable final Long id, @RequestBody final ClienteRequest request){
         final Cliente cliente = mapper.map(request, Cliente.class);
         cliente.setId(id);
 
         service.updateBy(cliente);
         return ResponseEntity.noContent()
-                             .build();
+                .build();
     }
 }

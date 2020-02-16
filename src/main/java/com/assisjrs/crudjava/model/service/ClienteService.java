@@ -3,11 +3,8 @@ package com.assisjrs.crudjava.model.service;
 import com.assisjrs.crudjava.model.entity.Cliente;
 import com.assisjrs.crudjava.model.repository.ClienteRepository;
 import com.assisjrs.crudjava.model.service.exception.ClienteNaoEncontradoException;
-import com.assisjrs.crudjava.model.service.exception.SystemException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import static org.apache.commons.beanutils.BeanUtils.copyProperties;
 
 @Service
 public class ClienteService {
@@ -26,17 +23,22 @@ public class ClienteService {
         repository.delete(cliente);
     }
 
-    public Cliente updateBy(final Cliente cliente) {
+    public void updateBy(final Cliente cliente) {
         final Cliente clienteRecuperado = byId(cliente.getId());
 
-        try {
-            copyProperties(clienteRecuperado, cliente);
-        } catch (Exception e) {
-            throw new SystemException();
-        }
+        if(isNotNullOrEmpty(cliente.getNome()))
+            clienteRecuperado.setNome(cliente.getNome());
+
+        if(isNotNullOrEmpty(cliente.getCpf()))
+            clienteRecuperado.setCpf(cliente.getCpf());
+
+        if(cliente.getNascimento() != null)
+            clienteRecuperado.setNascimento(cliente.getNascimento());
 
         repository.save(clienteRecuperado);
+    }
 
-        return clienteRecuperado;
+    private static boolean isNotNullOrEmpty(final String s){
+        return s != null && !"".equals(s.trim());
     }
 }
