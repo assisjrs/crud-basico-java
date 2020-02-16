@@ -1,4 +1,4 @@
-package com.assisjrs.crudjava;
+package com.assisjrs.crudjava.configuration;
 
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
