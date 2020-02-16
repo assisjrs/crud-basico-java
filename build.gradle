@@ -43,6 +43,9 @@ dependencies {
 
 	testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-stub-runner'
 	testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
+
+	testImplementation 'org.dbunit:dbunit:2.5.0'
+	testImplementation 'com.github.springtestdbunit:spring-test-dbunit:1.2.0'
 }
 
 dependencyManagement {
