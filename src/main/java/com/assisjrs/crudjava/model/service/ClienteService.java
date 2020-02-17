@@ -51,4 +51,8 @@ public class ClienteService {
     private static boolean isNotNullOrEmpty(final String s){
         return s != null && !"".equals(s.trim());
     }
+
+    public Cliente save(final Cliente cliente) {
+        return repository.save(cliente);
+    }
 }

@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,11 +23,6 @@ public class ClienteController {
     @Autowired
     private ClienteService service;
 
-    @GetMapping("{id}")
-    public ResponseEntity<ClienteResponse> get(@PathVariable final Long id){
-        return ResponseEntity.ok(mapper.map(service.byId(id), ClienteResponse.class));
-    }
-
     @GetMapping
     public ResponseEntity<Page<ClienteResponse>> busca(
             @RequestParam(value = "page", required = false, defaultValue = "0") int page,
@@ -41,6 +37,23 @@ public class ClienteController {
         clientesPage.forEach(c -> responses.add(mapper.map(c, ClienteResponse.class)));
 
         return ResponseEntity.ok(new PageImpl<>(responses, clientesPage.getPageable(), clientesPage.getTotalElements()));
+    }
+
+    @PostMapping
+    public ResponseEntity<ClienteResponse> post(@RequestBody final ClienteRequest request){
+
+        final Cliente cliente = service.save(mapper.map(request, Cliente.class));
+
+        final ClienteResponse response = mapper.map(cliente, ClienteResponse.class);
+        response.setId(1L);
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                             .body(response);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<ClienteResponse> get(@PathVariable final Long id){
+        return ResponseEntity.ok(mapper.map(service.byId(id), ClienteResponse.class));
     }
 
     @DeleteMapping("{id}")
