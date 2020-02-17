@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <CLIENTE id="1" nome="Assis Junior"   cpf="99988877766" nascimento="1981-11-14"/>
+    <CLIENTE id="2" nome="Francisco Melo" cpf="99999999999" nascimento="1979-11-20"/>
+    <CLIENTE id="3" nome="Martin Fowler"  cpf="11111111111" nascimento="1970-01-14"/>
+
+    <CLIENTE id="4" nome="João da Silva"    cpf="88888888888" nascimento="1990-02-14"/>
+    <CLIENTE id="5" nome="Robert C. Martin" cpf="77777777777" nascimento="1954-09-20"/>
+    <CLIENTE id="6" nome="Joshua Block"     cpf="66666666666" nascimento="1970-08-14"/>
+
+    <CLIENTE id="7" nome="Newton C. Braga"           cpf="55555555555" nascimento="1993-03-14"/>
+    <CLIENTE id="8" nome="Andrew Stuart Tanenbaum"   cpf="44444444444" nascimento="1987-10-20"/>
+    <CLIENTE id="9" nome="Gottfried Wilhelm Leibniz" cpf="33333333333" nascimento="1977-07-14"/>
+
+    <CLIENTE id="10" nome="Isaac Newton"               cpf="22222222222" nascimento="1999-04-14"/>
+    <CLIENTE id="11" nome="Friedrich August von Hayek" cpf="90909090909" nascimento="1950-05-20"/>
+    <CLIENTE id="12" nome="Milton Friedman"            cpf="98989898989" nascimento="1973-06-14"/>
+</dataset>
