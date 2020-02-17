@@ -4,13 +4,23 @@ import com.assisjrs.crudjava.model.entity.Cliente;
 import com.assisjrs.crudjava.model.repository.ClienteRepository;
 import com.assisjrs.crudjava.model.service.exception.ClienteNaoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import static org.springframework.data.domain.Sort.Direction.ASC;
 
 @Service
 public class ClienteService {
 
     @Autowired
     private ClienteRepository repository;
+
+    public Page<Cliente> busca(final int page, final int size, final String cpf, final String nome) {
+        final PageRequest pageRequest = PageRequest.of(page, size, ASC,"nome");
+
+        return repository.busca(pageRequest, cpf, isNotNullOrEmpty(nome)? nome.toLowerCase(): null);
+    }
 
     public Cliente byId(final Long id) {
         return repository.findById(id)
