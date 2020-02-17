@@ -45,7 +45,6 @@ public class ClienteController {
         final Cliente cliente = service.save(mapper.map(request, Cliente.class));
 
         final ClienteResponse response = mapper.map(cliente, ClienteResponse.class);
-        response.setId(1L);
 
         return ResponseEntity.status(HttpStatus.CREATED)
                              .body(response);
