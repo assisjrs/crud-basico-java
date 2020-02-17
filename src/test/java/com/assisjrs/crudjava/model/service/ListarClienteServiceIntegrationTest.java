@@ -26,7 +26,7 @@ public class ListarClienteServiceIntegrationTest {
 
 	@Test
 	void se_o_tamanho_da_pagina_for_2_itens_quando_e_exibida_a_segunda_pagina_entao_o_primeiro_item_retornado_e_o_item_3() {
-		final Page<Cliente> clientes = service.busca(1, 2, null, null);
+		final Page<Cliente> clientes = service.busca(1, 2, null, "a");
 
 		assertThat(clientes.getContent().get(0).getId()).isEqualTo(2L);
 	}
@@ -35,7 +35,7 @@ public class ListarClienteServiceIntegrationTest {
 	void deve_ser_capaz_de_filtrar_os_dados_por_nome() {
 		final Page<Cliente> clientes = service.busca(0, 10, null, "A");
 
-		assertThat(clientes.getTotalElements()).isEqualTo(1);
+		assertThat(clientes.getTotalElements()).isEqualTo(11L);
 	}
 
 	@Test

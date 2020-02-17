@@ -44,7 +44,7 @@ public class ListarClienteContractTest {
 	@Test
 	void se_o_tamanho_da_pagina_for_2_itens_quando_e_exibida_a_segunda_pagina_entao_o_primeiro_item_retornado_e_o_item_3() {
 		webClient
-				.get().uri("/clientes?page=1&size=2")
+				.get().uri("/clientes?page=1&size=2&nome=a")
 				.exchange()
 				.expectBody().jsonPath("$.content[0].id").isEqualTo(2L);
 	}
@@ -52,7 +52,7 @@ public class ListarClienteContractTest {
 	@Test
 	void deve_ser_capaz_de_filtrar_os_dados_por_nome() {
 		webClient
-				.get().uri("/clientes?nome='Assis Junior'")
+				.get().uri("/clientes?nome=Assis")
 				.exchange()
 				.expectBody().jsonPath("$.numberOfElements").isEqualTo(1);
 	}
@@ -60,7 +60,7 @@ public class ListarClienteContractTest {
 	@Test
 	void deve_ser_capaz_de_filtrar_os_dados_por_cpf() {
 		webClient
-				.get().uri("/clientes?cpf='11111111111'")
+				.get().uri("/clientes?cpf=11111111111")
 				.exchange()
 				.expectBody().jsonPath("$.numberOfElements").isEqualTo(1);
 	}
@@ -68,7 +68,7 @@ public class ListarClienteContractTest {
 	@Test
 	void deve_ser_capaz_de_filtrar_os_dados_por_cpf_e_nome() {
 		webClient
-				.get().uri("/clientes?nome='Milton Friedman'&cpf='98989898989'")
+				.get().uri("/clientes?nome=Milton&cpf=98989898989")
 				.exchange()
 				.expectBody().jsonPath("$.numberOfElements").isEqualTo(1);
 	}
