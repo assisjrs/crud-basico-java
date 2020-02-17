@@ -13,6 +13,10 @@
 
 ./gradlew bootRun
 
+###Collection postman com exemplos
+/crud-java.postman_collection.json
+
+
 ###Build da imagem docker
  docker build -t crud-java:latest .
 
